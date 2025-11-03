@@ -7,7 +7,9 @@ import {
   FlatList,
   Modal,
   TouchableOpacity,
-  TextInput
+  TextInput,
+  Image,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 export default function App() {
@@ -41,17 +43,20 @@ export default function App() {
         }}/>
       </View>
       <Modal visible={isModalVisible} animationType={"slide"}>
-        <View style={styles.modalView}>
-          <TextInput value={inputValue} onChangeText={setInputValue} style={styles.input}/>
-          <View style={styles.modalBtnContainer}>
-            <TouchableOpacity activeOpacity={0.9} style={[styles.modalBtns, styles.createBtn]} onPress={onCreateItem}>
-              <Text style={styles.modalBtnText}>Créer</Text>
-            </TouchableOpacity>
-            <TouchableOpacity activeOpacity={0.9} style={[styles.modalBtns, styles.closeBtn]} onPress={onCloseModal}>
-              <Text style={styles.modalBtnText}>Fermer</Text>
-            </TouchableOpacity>
+        <KeyboardAvoidingView style={styles.keyboardView} behavior={"height"}>
+          <View style={styles.modalView}>
+            <Image source={require("./assets/logo-react-native.png")} style={styles.image}/>
+            <TextInput value={inputValue} onChangeText={setInputValue} style={styles.input}/>
+            <View style={styles.modalBtnContainer}>
+              <TouchableOpacity activeOpacity={0.9} style={[styles.modalBtns, styles.createBtn]} onPress={onCreateItem}>
+                <Text style={styles.modalBtnText}>Créer</Text>
+              </TouchableOpacity>
+              <TouchableOpacity activeOpacity={0.9} style={[styles.modalBtns, styles.closeBtn]} onPress={onCloseModal}>
+                <Text style={styles.modalBtnText}>Fermer</Text>
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </Modal>
     </SafeAreaView>
   );
@@ -124,12 +129,20 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: 'white'
   },
+  keyboardView: {
+    flex: 1,
+  },
   modalView: {
     flex: 1,
     backgroundColor: 'grey',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
     paddingHorizontal: 24
+  },
+  image: {
+    width: 260,
+    height: 260,
+    borderRadius: 12,
   },
   modalBtnContainer: {
     flexDirection: 'row',
