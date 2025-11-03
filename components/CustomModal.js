@@ -6,7 +6,7 @@ import {
   TextInput,
   StyleSheet,
 } from "react-native";
-import CustomBtn from "UI/CustomBtn";
+import CustomBtn from "./UI/CustomBtn";
 
 export default function CustomModal({isModalVisible, inputValue, setInputValue, onCreateItem, onCloseModal,}) {
   return (
